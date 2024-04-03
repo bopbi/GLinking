@@ -1,6 +1,13 @@
+import java.io.FileInputStream
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
+}
+
+val localProperties = Properties().apply {
+    FileInputStream(rootProject.file("local.properties")).use { load(it) }
 }
 
 android {
@@ -15,6 +22,9 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        val serviceId = localProperties.getProperty("SERVICE_ID") ?: ""
+        buildConfigField("String", "SERVICE_ID", "\"$serviceId\"")
     }
 
     buildTypes {
@@ -32,6 +42,10 @@ android {
     }
     kotlinOptions {
         jvmTarget = "1.8"
+    }
+    // Enable generation of BuildConfig class
+    buildFeatures {
+        buildConfig = true
     }
 }
 

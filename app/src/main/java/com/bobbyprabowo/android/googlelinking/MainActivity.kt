@@ -36,10 +36,10 @@ class MainActivity : AppCompatActivity() {
         { result ->
             if (result.resultCode == RESULT_OK) {
                 // Successfully finished the flow and saved the token
-                Log.i(TAG, "Success to save token result: ${result.resultCode}")
+                Log.i(TAG, "activityResultLauncher: Success to save token result: ${result.resultCode}")
             } else {
                 // Flow failed, for example the user may have canceled the flow
-                Log.e(TAG, "Failed to save token result: ${result.resultCode}")
+                Log.e(TAG, "activityResultLauncher : Failed to save token result: ${result.resultCode}")
             }
         }
 
@@ -55,7 +55,7 @@ class MainActivity : AppCompatActivity() {
         val request = SaveAccountLinkingTokenRequest.builder()
             .setTokenType(SaveAccountLinkingTokenRequest.TOKEN_TYPE_AUTH_CODE)
             .setConsentPendingIntent(consentPendingIntent)
-            .setServiceId("xxxx")
+            .setServiceId(BuildConfig.SERVICE_ID)
             //Set the scopes that the token is valid for on your platform
             .setScopes(listOf("profile", "email"))
             .build()
