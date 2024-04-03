@@ -57,7 +57,12 @@ class MainActivity : AppCompatActivity() {
             .setConsentPendingIntent(consentPendingIntent)
             .setServiceId(BuildConfig.SERVICE_ID)
             //Set the scopes that the token is valid for on your platform
-            .setScopes(listOf("profile", "email"))
+            .setScopes(
+                listOf(
+                    "https://www.googleapis.com/auth/userinfo.email",
+                    "https://www.googleapis.com/auth/userinfo.profile",
+                )
+            )
             .build()
 
         // Launch consent activity and retrieve token

@@ -28,7 +28,7 @@ class ConsentActivity : AppCompatActivity() {
 
         intent?.let {
             // Handle the intent
-            println(intent)
+            println("launch $intent")
         }
     }
 
