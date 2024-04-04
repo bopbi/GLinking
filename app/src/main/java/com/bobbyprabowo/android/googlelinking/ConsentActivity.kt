@@ -6,6 +6,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.Button
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -18,7 +19,7 @@ class ConsentActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_consent)
         val view = findViewById<View>(R.id.main)
         ViewCompat.setOnApplyWindowInsetsListener(view) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -26,9 +27,12 @@ class ConsentActivity : AppCompatActivity() {
             insets
         }
 
-        intent?.let {
-            // Handle the intent
-            println("launch $intent")
+        findViewById<Button>(R.id.acceptConsentButton).setOnClickListener {
+            onConsentAccepted()
+        }
+
+        findViewById<Button>(R.id.rejectConsentButton).setOnClickListener {
+            onConsentRejectedOrCanceled()
         }
     }
 
