@@ -7,14 +7,37 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <TextView
+        android:id="@+id/guideTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/serviceIdEditText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintVertical_chainStyle="packed"
+        android:text="@string/text_demo_for_google_auth_linking"/>
+    <EditText
+        android:id="@+id/serviceIdEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/guideTextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/linkingButton"
+        android:layout_margin="16dp"
+        android:hint="@string/hint_service_id"
+        app:layout_constraintVertical_chainStyle="packed"
+        android:autofillHints="" />
     <Button
         android:id="@+id/linkingButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Not Linked"
+        android:text="@string/text_start_auth_linking"
+        android:layout_margin="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/serviceIdEditText" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

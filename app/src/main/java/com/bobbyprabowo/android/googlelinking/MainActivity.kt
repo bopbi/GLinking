@@ -4,7 +4,9 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Button
+import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.IntentSenderRequest
@@ -18,6 +20,8 @@ import com.google.android.gms.auth.api.identity.SaveAccountLinkingTokenRequest
 private const val TAG = "MainActivity"
 
 class MainActivity : AppCompatActivity() {
+
+    private var serviceIdEditText: EditText? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -29,6 +33,11 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
+        serviceIdEditText = findViewById(R.id.serviceIdEditText)
+        val isDebugBuildAndConfigContainServiceId = BuildConfig.DEBUG && BuildConfig.SERVICE_ID.isNotBlank()
+        if (isDebugBuildAndConfigContainServiceId) {
+            serviceIdEditText?.setText(BuildConfig.SERVICE_ID, TextView.BufferType.EDITABLE)
+        }
         // Create an ActivityResultLauncher which registers a callback for the
         // Activity result contract
         val activityResultLauncher = registerForActivityResult(
@@ -51,11 +60,16 @@ class MainActivity : AppCompatActivity() {
     private fun openGoogleLink(activityResultLauncher: ActivityResultLauncher<IntentSenderRequest>) {
         val consentPendingIntent = ConsentActivity.createPendingIntent(this)
 
+        val serviceId = serviceIdEditText?.getText()?.toString()
+        if (serviceId.isNullOrBlank()) {
+            Toast.makeText(this, "Service ID is empty", Toast.LENGTH_SHORT).show()
+            return
+        }
         // Build token save request
         val request = SaveAccountLinkingTokenRequest.builder()
             .setTokenType(SaveAccountLinkingTokenRequest.TOKEN_TYPE_AUTH_CODE)
             .setConsentPendingIntent(consentPendingIntent)
-            .setServiceId(BuildConfig.SERVICE_ID)
+            .setServiceId(serviceId)
             //Set the scopes that the token is valid for on your platform
             .setScopes(
                 listOf(
