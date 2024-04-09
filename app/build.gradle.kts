@@ -18,8 +18,8 @@ android {
         applicationId = "com.bobbyprabowo.android.googlelinking"
         minSdk = 26
         targetSdk = 34
-        versionCode = 2
-        versionName = "1.0 - 20240409"
+        versionCode = 3
+        versionName = "1.0 - $versionCode"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 

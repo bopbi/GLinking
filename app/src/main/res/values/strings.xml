@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">GLinking</string>
     <string name="hint_service_id">Service ID</string>
+    <string name="text_google_auth_linking">Google Auth Linking</string>
     <string name="text_start_auth_linking">Start Auth Linking</string>
     <string name="text_demo_for_google_auth_linking">
         Demo for Google Auth Linking
