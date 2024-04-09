@@ -5,6 +5,6 @@
     <string name="text_demo_for_google_auth_linking">
         Demo for Google Auth Linking
         \nit will perform auth linking with scope
-        "https://www.googleapis.com/auth/userinfo.email" and "https://www.googleapis.com/auth/userinfo.profile
+        https://www.googleapis.com/auth/userinfo.profile
     </string>
 </resources>
