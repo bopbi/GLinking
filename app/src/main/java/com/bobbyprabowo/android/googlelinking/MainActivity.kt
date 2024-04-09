@@ -73,7 +73,7 @@ class MainActivity : AppCompatActivity() {
             //Set the scopes that the token is valid for on your platform
             .setScopes(
                 listOf(
-                    "https://www.googleapis.com/auth/userinfo.email",
+//                    "https://www.googleapis.com/auth/userinfo.email",
                     "https://www.googleapis.com/auth/userinfo.profile",
                 )
             )
