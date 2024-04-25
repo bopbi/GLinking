@@ -7,6 +7,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -40,6 +41,7 @@ class ConsentActivity : AppCompatActivity() {
         // Obtain a token (for simplicity, we’ll ignore the async nature
         // of the following call)
         val token = getToken(this, "oauth-learn", "oauth2:profile email")
+        Toast.makeText(this, "GAL Token: $token", Toast.LENGTH_LONG).show()
         val intent = Intent()
             .putExtra(
                 SaveAccountLinkingTokenRequest.EXTRA_TOKEN,
@@ -49,6 +51,7 @@ class ConsentActivity : AppCompatActivity() {
     }
 
     private fun onConsentRejectedOrCanceled() {
+        Toast.makeText(this, "Canceled", Toast.LENGTH_LONG).show()
         setResult(Activity.RESULT_CANCELED)
         finish()
     }
